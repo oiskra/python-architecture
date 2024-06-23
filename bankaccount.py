@@ -1,9 +1,3 @@
-# Napisz klasę BankAccount, która implementuje podstawowe operacje na koncie
-#  bankowym, takie jak wpłacanie, wypłacanie i sprawdzanie salda. Klasa powinna
-#  wywoływać wyjątek przy próbie wpłaty lub wypłaty niepoprawnej kwoty. Następnie napisz
-#  testy jednostkowe za pomocą PyTest, które sprawdzą poprawność działania metod oraz
-#  obsługę błędów.
-
 class InvalidAmountError(Exception):
     pass
 
@@ -12,6 +6,8 @@ class InsufficientFundsError(Exception):
 
 class BankAccount:
     def __init__(self, initial_balance = 0) -> None:
+        if initial_balance < 0:
+            raise InvalidAmountError("You can't have negative initial balance.")
         self.balance = initial_balance
         
     def deposit(self, amount):
